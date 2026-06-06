@@ -1,5 +1,5 @@
 # Reliability, Retries, and Idempotency
----
+
 ## Understanding Two Different Confirmations
 
 This confuses almost everyone at first, so let's be crystal clear: **Publisher confirms and consumer acknowledgements are completely different mechanisms that solve different problems.**
@@ -72,7 +72,7 @@ def callback(ch, method, properties, body):
 
 **Key insight:** A publisher confirm tells you RabbitMQ accepted the message. A consumer ack tells you someone processed it. You need both for end-to-end reliability.
 
----
+
 ## Reliable Publishing: Complete Checklist
 
 If you're publishing important messages (orders, payments, critical notifications), follow this checklist. Each item addresses a specific failure mode.
@@ -292,7 +292,7 @@ Even with all protections, one scenario remains tricky:
 
 **Solution:** Accept that duplicates are possible. Make consumers idempotent (covered next).
 
----
+
 ## At-Least-Once Delivery: The Reality of Distributed Systems
 
 Most RabbitMQ systems implement **at-least-once** delivery semantics. Understanding what this means is crucial.
@@ -347,7 +347,7 @@ RabbitMQ chose a pragmatic approach: guarantee no message loss (at-least-once), 
 
 Make your consumers safe to run multiple times with the same message. This is covered in the next section.
 
----
+
 ## Idempotent Consumer: Making Duplicates Safe
 
 **Idempotency** means processing a message multiple times produces the same result as processing it once.
@@ -621,7 +621,7 @@ Formula for reliability:
 At-least-once delivery + Idempotent consumers = Effectively-once outcome ✓
 ```
 
----
+
 ## Retry Classification
 
 | Failure | Example | Action |
@@ -631,7 +631,7 @@ At-least-once delivery + Idempotent consumers = Effectively-once outcome ✓
 | Business | card declined, stock unavailable | Record business result; usually do not technical-retry |
 | Unknown | unexpected exception | Limited retry, alert, then DLQ |
 
----
+
 ## Retry Architecture
 
 ```text
@@ -648,7 +648,7 @@ After max attempts -> dead-letter exchange -> DLQ
 
 Use increasing delays such as 10 seconds, 1 minute, and 5 minutes. Add jitter when many messages might retry together. Always cap attempts.
 
----
+
 ## Dead-Letter Queue
 
 A DLQ is not a solution by itself. It needs:
@@ -662,7 +662,7 @@ A DLQ is not a solution by itself. It needs:
 
 Prefer RabbitMQ policies for DLX and TTL configuration because operators can change policies without redeploying every application.
 
----
+
 ## Transactional Outbox
 
 The dual-write problem:
@@ -673,7 +673,7 @@ Database commit succeeds + RabbitMQ publish fails = inconsistent system
 
 With an outbox, the application writes business data and an outbox row in one database transaction. A separate publisher reads unsent rows, publishes with confirms, and marks them sent. Duplicate publishing remains possible, so consumers still need idempotency.
 
----
+
 ## Exactly Once
 
 RabbitMQ does not provide automatic end-to-end exactly-once business processing. Aim for:

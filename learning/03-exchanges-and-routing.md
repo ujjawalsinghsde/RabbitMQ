@@ -1,5 +1,5 @@
 # Exchanges and Routing
----
+
 ## Understanding Exchanges First
 
 When you're new to RabbitMQ, you might wonder: "Why can't I just send messages directly to queues? Why this exchange thing?"
@@ -10,7 +10,7 @@ Imagine if producers had to know the exact queue names of every consumer. When y
 
 **Think of exchanges like:** A smart mail sorting center with routing rules. You just send mail to the sorting center; the rules determine where it goes. Change the rules, not the senders.
 
----
+
 ## Default Exchange
 
 The **default exchange** is a special exchange with an empty name: `""`. It's a shortcut for beginners.
@@ -48,7 +48,7 @@ This message goes directly to the "tasks" queue.
 
 **Best practice:** Use named exchanges for any real project. The default exchange is training wheels.
 
----
+
 ## Direct Exchange
 
 A **direct exchange** delivers messages to queues where the **binding key exactly matches the routing key**.
@@ -117,7 +117,7 @@ Both queues receive messages with routing_key="error". This is useful for:
 
 ❌ Not great when you need pattern matching or wildcards
 
----
+
 ## Fanout Exchange
 
 A **fanout exchange** is the simplest type: it broadcasts every message to every bound queue. It completely ignores the routing key.
@@ -220,7 +220,7 @@ With fanout exchanges, **adding a new consumer is just:**
 
 This is loose coupling at its finest.
 
----
+
 ## Topic Exchange
 
 **Topic exchanges** are the most flexible and commonly used in production. They match routing keys using wildcard patterns.
@@ -415,7 +415,7 @@ payment.card.visa.charged    → Maybe too specific?
 
 Find the right level of granularity for your use case. Too broad and you can't filter; too specific and your routing keys become a mess.
 
----
+
 ## Headers Exchange
 
 A **headers exchange** routes messages based on message headers instead of the routing key. It's more complex but occasionally useful for specific scenarios.
@@ -574,7 +574,7 @@ Set up alerts if the unrouted messages queue starts filling up. It usually means
 - Someone deleted a binding by mistake
 - Configuration drift between environments
 
----
+
 ## Routing Design Tips
 
 Let's pull together the best practices for designing your routing architecture:

@@ -1,5 +1,5 @@
 # Production Operations
----
+
 ## Security
 
 - Never use the default `guest` account for applications.
@@ -9,14 +9,14 @@
 - Restrict management UI and metrics endpoints.
 - Avoid secrets and unnecessary personal data in message bodies.
 
----
+
 ## High Availability
 
 A RabbitMQ cluster lets nodes cooperate, but queue data safety depends on queue type. For critical queues, use quorum queues across an odd number of nodes, usually three. Losing a majority makes a quorum queue unavailable rather than accepting unsafe writes.
 
 Place nodes with awareness of failure zones and test actual node, network, disk, and client-reconnection failures.
 
----
+
 ## Client Recovery
 
 Applications should:
@@ -31,7 +31,7 @@ Applications should:
 
 Do not retry connection failures in a tight loop.
 
----
+
 ## Monitoring
 
 Alert on trends and symptoms:
@@ -50,7 +50,7 @@ Alert on trends and symptoms:
 
 Collect application metrics too: processing latency, success/failure count, retry count, message age at consumption, and downstream dependency latency.
 
----
+
 ## Deployment and Upgrade
 
 - Pin a supported RabbitMQ version; do not rely on an unbounded `latest` tag.
@@ -59,7 +59,7 @@ Collect application metrics too: processing latency, success/failure count, retr
 - Test rolling upgrades and client compatibility in staging.
 - Verify policies, plugins, feature flags, alarms, and dashboards afterward.
 
----
+
 ## Disaster Recovery
 
 High availability and disaster recovery are different:
@@ -69,7 +69,7 @@ High availability and disaster recovery are different:
 
 Document recovery point objective (RPO), recovery time objective (RTO), DNS and client failover, data replication approach, and replay/reconciliation steps. Run recovery exercises.
 
----
+
 ## Production Readiness Questions
 
 1. Which messages may be lost, if any?

@@ -1,5 +1,5 @@
 # Core Concepts
----
+
 ## The Main Components
 
 Understanding these building blocks is essential. Think of RabbitMQ like a sophisticated postal system:
@@ -159,7 +159,7 @@ A **consumer** is any application that subscribes to a queue and processes messa
 
 **Think of it like:** The recipient of mail. They check their mailbox, read each letter, do whatever the letter asks, and then throw it away (acknowledgment).
 
----
+
 ## Connection and Channel
 
 These are fundamental concepts that confuse many beginners, but they're actually simple once you understand the "why."
@@ -216,7 +216,7 @@ consume_channel = connection.channel()
 # Don't share channels between threads!
 ```
 
----
+
 ## Virtual Host (vhost)
 
 A **virtual host** is like a separate isolated instance of RabbitMQ running inside one RabbitMQ server. Think of it as separate apartments in one building.
@@ -251,7 +251,7 @@ A **virtual host** is like a separate isolated instance of RabbitMQ running insi
 
 **Think of it like:** Different databases on one PostgreSQL server. Each database is isolated, but they all run on the same server and share some resources.
 
----
+
 ## Message Anatomy
 
 A well-structured message has two parts: **envelope metadata** and **body data**.
@@ -356,7 +356,7 @@ Store the large file in S3/cloud storage and send a reference.
 
 ❌ **Random or meaningless routing keys:** Don't use random UUIDs as routing keys—they prevent routing logic from working.
 
----
+
 ## Durable Is Not the Same as Persistent
 
 This confuses almost everyone when learning RabbitMQ. Let's clarify:

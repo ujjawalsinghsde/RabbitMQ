@@ -1,5 +1,5 @@
 # Scaling and Performance
----
+
 ## Competing Consumers
 
 Multiple consumers on one queue share the work:
@@ -12,7 +12,7 @@ tasks -> worker 1
 
 This scales command or job processing. It is not broadcast. For broadcast, create a separate queue for each interested service.
 
----
+
 ## Scaling Checklist
 
 1. Measure publish rate and processing rate.
@@ -23,7 +23,7 @@ This scales command or job processing. It is not broadcast. For broadcast, creat
 6. Set sensible connection, heartbeat, and blocked-connection timeouts.
 7. Keep messages small; store large files in object storage and send references.
 
----
+
 ## Back Pressure
 
 If producers are faster than consumers, queue depth grows. A queue buffers a temporary spike; it does not create unlimited capacity.
@@ -37,7 +37,7 @@ Possible responses:
 - set queue length and message TTL policies
 - separate slow and fast workloads
 
----
+
 ## Queue Types
 
 ### Classic Queue
@@ -54,7 +54,7 @@ Avoid quorum queues for temporary/exclusive high-churn queues, minimum-latency r
 
 An append-only replicated log designed for high throughput, large backlogs, replay, and multiple consumers reading independently. Streams have a different consumption model from ordinary queues.
 
----
+
 ## Performance Trade-offs
 
 - Persistence and replication improve safety but cost latency and I/O.
@@ -63,7 +63,7 @@ An append-only replicated log designed for high throughput, large backlogs, repl
 - More queues improve isolation but add broker metadata and operational cost.
 - Very large messages hurt memory, disk, network, and recovery.
 
----
+
 ## Capacity Thinking
 
 Use Little's Law as a rough guide:

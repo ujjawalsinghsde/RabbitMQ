@@ -1,5 +1,5 @@
 # Introduction to RabbitMQ
----
+
 ## What Problem Does It Solve?
 
 Imagine you're building an e-commerce website. When a customer places an order, your system needs to do many things:
@@ -39,7 +39,7 @@ The Order API responds to the customer instantly because it only needs to send a
 - It **stores messages** temporarily when consumers are busy or offline
 - It **delivers messages** reliably to consumers when they're ready
 
----
+
 ## Why Use It?
 
 ### 1. Asynchronous Work
@@ -74,7 +74,7 @@ If a consumer crashes while processing, RabbitMQ can redeliver the message to an
 ### 6. Horizontal Scaling
 Need more processing power? Just start more consumers. If one payment worker can process 100 orders/minute, and you need to process 500 orders/minute, simply run 5 payment workers. RabbitMQ automatically distributes work among them. No complex load balancer setup needed.
 
----
+
 ## When RabbitMQ Fits
 
 RabbitMQ excels in these scenarios:
@@ -97,7 +97,7 @@ RabbitMQ excels in these scenarios:
 ### Flexible Routing Needs
 **Example:** You want all "error" level logs to go to your Alert Service, but "info" level logs only to your Analytics Service. RabbitMQ's routing rules let you configure this without changing application code.
 
----
+
 ## When It Is Not the Best Choice
 
 ### When You Need to Query Historical Data
@@ -125,7 +125,7 @@ If you're building a system where a business process takes 3 months (like a loan
 
 **Better choice:** Temporal, Camunda, or a database with a state machine.
 
----
+
 ## Message Versus Event Versus Command
 
 Understanding these distinctions helps you design better systems:
@@ -173,7 +173,7 @@ An event announces that something already happened. Multiple services might care
 - For most business events, use events not commands
 - Use commands for targeted work distribution
 
----
+
 ## What RabbitMQ Does Not Do for You
 
 RabbitMQ is powerful, but it's not magic. You still need to handle:
@@ -195,7 +195,7 @@ If you change your message format, RabbitMQ won't automatically convert old mess
 ### Observability
 RabbitMQ provides basic metrics, but you need to instrument your code to understand: How long did processing take? Why did it fail? What was the business impact?
 
----
+
 ## First Design Questions
 
 Before you create your first queue, think through these questions. They'll save you from painful redesigns later:

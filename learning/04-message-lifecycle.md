@@ -1,5 +1,5 @@
 # Message Lifecycle
----
+
 ## The Complete Journey
 
 Understanding each step and where failures can happen is crucial for building reliable systems.
@@ -54,7 +54,7 @@ Understanding each step and where failures can happen is crucial for building re
 
 **The goal of good design:** Handle each failure mode explicitly instead of hoping they won't happen.
 
----
+
 ## Consumer Acknowledgement Modes
 
 This is one of the most important concepts to understand. Acknowledgements determine **when RabbitMQ considers a message successfully delivered**.
@@ -178,7 +178,7 @@ If a consumer receives a message but doesn't acknowledge it, and the connection 
 
 **This is a safety feature,** not a bug. It ensures messages aren't lost when consumers fail.
 
----
+
 ## Ack, Nack, Reject: Your Options for Message Handling
 
 When using manual acknowledgement, you have several ways to respond after processing (or failing to process) a message.
@@ -340,7 +340,7 @@ Message received
                 (unknown exception, investigate in DLQ)
 ```
 
----
+
 ## Prefetch (Quality of Service)
 
 **Prefetch** controls how many unacknowledged messages a consumer can have at once. It's one of the most important tuning parameters.
@@ -500,7 +500,7 @@ channel.basic_qos(prefetch_count=10000)
 ❌ **Forgetting to set prefetch at all**
 Default behavior varies by client library. Explicitly set it.
 
----
+
 ## Ordering: The Complicated Truth
 
 Many beginners assume RabbitMQ guarantees strict FIFO (first-in-first-out) ordering. **This is only partially true, and the reality is nuanced.**
@@ -714,7 +714,7 @@ WHERE user_id = 123
 
 **Remember:** If you need strict transactional ordering across everything, you might need a database with transactions, not a message queue.
 
----
+
 ## Pull Versus Push: How Messages Get to Consumers
 
 There are two fundamental ways consumers can receive messages: **push** (the standard way) and **pull** (rarely used).

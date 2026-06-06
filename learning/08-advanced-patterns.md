@@ -1,5 +1,5 @@
 # Advanced Patterns
----
+
 ## Request/Reply (RPC)
 
 A requester publishes with a `reply_to` destination and a unique `correlation_id`. The responder sends the result to that destination.
